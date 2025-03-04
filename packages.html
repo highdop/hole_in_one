@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الحزم - منتجع هول إن ون</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- إضافة jQuery -->
+</head>
+<body>
+    <header>
+        <h1>منتجع هول إن ون للجولف</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="packages.html">الحزم</a></li>
+                <li><a href="services.html">الخدمات</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>الحزم المتاحة</h2>
+            <label for="packages">اختر حزمة:</label>
+            <select id="packages">
+                <option value="">اختر حزمة</option>
+                <option value="luxury-suite">إقامة كاملة لمدة خمس ليالٍ في جناح فاخر</option>
+                <option value="five-rounds">خمس جولات - 18 حفرة</option>
+                <option value="seaview">جولة واحدة مضمونة في ملعب "سي فيو" الشهير</option>
+                <option value="digital-training">جلسة تدريب رقمية مجانية</option>
+                <option value="tee-triple">الجولة الثلاثية (tee Triple)</option>
+                <option value="relaxation">استراحة استجمام</option>
+            </select>
+            <div id="package-image" style="margin-top: 20px;">
+                <img id="selected-package-image" src="" alt="صورة الحزمة" style="display: none; width: 100%; height: auto; border-radius: 5px;">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 منتجع هول إن ون. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // وظيفة لتغيير الصورة عند اختيار الحزمة
+        $(document).ready(function() {
+            $('#packages').change(function() {
+                var selectedPackage = $(this).val();
+                var imageUrl = '';
+
+                switch (selectedPackage) {
+                    case 'luxury-suite':
+                        imageUrl = 'الحزم4.jpg'; // ضع مسار الصورة للجناح الفاخر
+                        break;
+                    case 'five-rounds':
+                        imageUrl = 'الحزم3.jpg'; // ضع مسار الصورة لجولات الجولف
+                        break;
+                    case 'seaview':
+                        imageUrl = 'الحزم2.jpg'; // ضع مسار الصورة لجولة "سي فيو"
+                        break;
+                    case 'digital-training':
+                        imageUrl = 'الحزم.jpg'; // ضع مسار الصورة للجلسة التدريبية الرقمية
+                        break;
+                    case 'tee-triple':
+                        imageUrl = 'الحزم5.jpg'; // ضع مسار الصورة للجولة الثلاثية
+                        break;
+                    case 'relaxation':
+                        imageUrl = 'الحزم6.jpg'; // ضع مسار الصورة لاستراحة الاستجمام
+                        break;
+                    default:
+                        imageUrl = '';
+                }
+
+                if (imageUrl) {
+                    $('#selected-package-image').attr('src', imageUrl).show();
+                } else {
+                    $('#selected-package-image').hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

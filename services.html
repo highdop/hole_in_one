@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الخدمات - منتجع هول إن ون</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- إضافة jQuery -->
+</head>
+<body>
+    <header>
+        <h1>منتجع هول إن ون للجولف</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="packages.html">الحزم</a></li>
+                <li><a href="services.html">الخدمات</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>الخدمات المقدمة</h2>
+            <ul>
+                <li>ثلاثة ملاعب للجولف.</li>
+                <li>ناديان.</li>
+                <li>إقامة في الفنادق.</li>
+                <li>دروس الجولف.</li>
+                <li>تدريب رقمي.</li>
+                <li>خدمة المساعدة على حمل أدوات الجولف.</li>
+                <li>ساحة تدريب مضاءة بالأنوار الكاشفة.</li>
+                <li>مطاعم ومقاهي.</li>
+                <li>متجر للمحترفين.</li>
+            </ul>
+            
+            <!-- قائمة منسدلة للخدمات المقدمة-->
+            <label for="services-dropdown">اختر خدمة:</label>
+            <select id="services-dropdown">
+                <option value="">اختر خدمة</option>
+                <option value="golf-lessons">دروس جولف</option>
+                <option value="equipment-rental">تأجير المعدات</option>
+                <option value="spa-services">خدمات لحمل معدات الغولف</option>
+                <option value="restaurant-reservation">حجز في المطعم</option>
+            </select>
+            <div id="service-image" style="margin-top: 20px;">
+                <img id="selected-service-image" src="" alt="صورة الخدمة" style="display: none; width: 20%; height: 20%; border-radius: 5px;">
+            </div>
+        </section>
+        <section>
+            <h2>خدمات إضافية</h2>
+            <label for="additional-services">اختر خدمة إضافية:</label>
+            <select id="additional-services" onchange="alert('لقد اخترت خدمة إضافية: ' + this.options[this.selectedIndex].text);">
+                <option value="cart-rental">تأجير عربات</option>
+                <option value="free-club-rental">تأجير نادي مجاني</option>
+                <option value="discount">خصم %20 لمتجر المحترفين</option>
+            </select>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 منتجع هول إن ون. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // وظيفة لتغيير الصورة عند اختيار الخدمة
+$(document).ready(function() {
+    $('#services-dropdown').change(function() {
+        var selectedService = $(this).val();
+        var imageUrl = '';
+
+        switch (selectedService) {
+            case 'golf-lessons':
+                imageUrl = 'istockphoto-509345681-1024x1024.jpg'; // ضع مسار الصورة لدروس الجولف
+                break;
+            case 'equipment-rental':
+                imageUrl = 'istockphoto-1390720996-612x612.jpg'; // ضع مسار الصورة لتأجير المعدات
+                break;
+            case 'spa-services':
+                imageUrl = 'istockphoto-512421059-612x612.jpg'; // ضع مسار الصورة لخدمات حمل معدات الغولف
+                break;
+            case 'restaurant-reservation':
+                imageUrl = 'istockphoto-1298093095-612x612.jpg'; // ضع مسار الصورة لحجز المطعم
+                break;
+            default:
+                imageUrl = '';
+        }
+
+        if (imageUrl) {
+            $('#selected-service-image').attr('src', imageUrl).show();
+            alert('لقد اخترت الخدمة: ' + $(this).find("option:selected").text()); // نص التنبيه
+        } else {
+            $('#selected-service-image').hide();
+        }
+    });
+});
+    </script>
+</body>
+</html>

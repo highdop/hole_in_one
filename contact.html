@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا - منتجع هول إن ون</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script> <!-- تأكد من ربط ملف JavaScript -->
+</head>
+<body>
+    <header>
+        <h1>منتجع هول إن ون للجولف</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="packages.html">الحزم</a></li>
+                <li><a href="services.html">الخدمات</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>تواصل معنا</h2>
+            <div id="alert" style="display: none; color: red; margin-bottom: 10px;"></div> <!-- عنصر التنبيه -->
+            <form>
+                <label for="name">الاسم:</label>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" name="email"><br><br>
+                <label for="message">رقم الهاتف:</label>
+                <textarea id="message" name="message"></textarea><br><br>
+                <input type="submit" value="إرسال">
+            </form>
+        </section>
+        <section>
+            <h2>معلومات الاتصال</h2>
+            <ul>
+                <li>الهاتف: 123456789</li>
+                <li>البريد الإلكتروني: <a href="mailto:info@holinwon.com">info@holinwon.com</a></li>
+                <li>العنوان: البرتغال</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 منتجع هول إن ون. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // وظيفة للتحقق من صحة النموذج
+        function validateForm(event) {
+            event.preventDefault(); // منع الإرسال الافتراضي للنموذج
+
+            // الحصول على القيم من الحقول
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // التحقق من أن الحقول ليست فارغة
+            let alertMessage = 'يرجى ملء الحقول التالية:';
+            let isValid = true;
+
+            if (name === '') {
+                alertMessage += '\n- الاسم';
+                isValid = false;
+            }
+            if (email === '') {
+                alertMessage += '\n- البريد الإلكتروني';
+                isValid = false;
+            }
+            if (message === '') {
+                alertMessage += '\n- رقم الهاتف';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                alert(alertMessage);
+                return false;
+            }
+
+            // التحقق من صحة البريد الإلكتروني
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('يرجى إدخال بريد إلكتروني صالح.');
+                return false;
+            }
+
+            // إذا كانت جميع التحقق ناجحة، يمكن إرسال النموذج
+            alert('تم إرسال النموذج بنجاح!');
+            document.querySelector('form').style.display = 'none'; // إخفاء النموذج
+            const confirmationMessage = document.createElement('p');
+            confirmationMessage.textContent = 'شكرًا لتواصلك معنا!';
+            document.body.appendChild(confirmationMessage);
+            return true;
+        }
+
+        // إضافة حدث عند تحميل الصفحة
+        window.onload = function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', validateForm);
+            }
+        };
+    </script>
+</body>
+</html>
